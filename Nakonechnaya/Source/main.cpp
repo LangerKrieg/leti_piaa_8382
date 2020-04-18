@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stack>
 #include <cmath>
-using namespace std;
 
 //обычный квадрат, используемый в разбиении
 struct Square{
@@ -41,7 +40,7 @@ void insertSquare(int **arr, int x, int y, int lengthSquare) {
 }
 
 //функция копирования стека
-void stackCopy(stack <Square>* squares, stack <Square>* squaresCopy) {
+void stackCopy(std::stack <Square>* squares, std::stack <Square>* squaresCopy) {
     while (!squares->empty()) {
         squaresCopy->push(squares->top());
         squares->pop();
@@ -76,15 +75,15 @@ int findLength(int** arr, int& x, int& y, int size) {
 }
 
 // рекурсивная функция для перебора возможных значений расстановки квадратов
-int minSquares(int limit, stack <Square>* squares, int** arr, int size, int recursionCounter) {
+int minSquares(int limit, std::stack <Square>* squares, int** arr, int size, int recursionCounter) {
     if (limit < recursionCounter) //если предел рекурсии меньше кол-ва входов рекурсии
         return -1;
     int x, y;
     if (!findEmptySpace(arr, x, y, size)) //если не нашли пустое пространство
         return 0;
 
-    stack <Square> tmpSquares;
-    stack <Square> maxSquares;
+    std::stack <Square> tmpSquares;
+    std::stack <Square> maxSquares;
 
     int maxLength = findLength(arr, x, y, size); //находим максимальную длину квадрата, который можно поместить
     //в свободное пространство
@@ -134,7 +133,7 @@ int main() {
     int primeFlag = 0;
     int limit = 0;
     int res = 0;
-    stack <Square> squares; //стек структур
+    std::stack <Square> squares; //стек структур
     int **arr = nullptr;
     int **arrReq = nullptr;
 
@@ -207,15 +206,15 @@ int main() {
         int x = 0, y = 0;
         for (int i = 0; i < reqSquaresNumber; i++){
             if (!findEmptySpace(arrReq, x, y, tabletopSize)){ //нет пустого места
-                cout << "Error: space isn't empty\n";
+                std::cout << "Error: space isn't empty\n";
                 return 0;
             }
             if ((x + reqSquares[i].size) > tabletopSize){ //квадраты выходят за предел столешницы
-                cout << "Error: the square goes beyond the tabletop\n";
+                std::cout << "Error: the square goes beyond the tabletop\n";
                 return 0;
             }
             if ((y + reqSquares[i].size) > tabletopSize){ //квадраты выходят за предел столешницы
-                cout << "Error: the square goes beyond the tabletop\n";
+                std::cout << "Error: the square goes beyond the tabletop\n";
                 return 0;
             }
             int reqLength = reqSquares[i].size;
@@ -226,15 +225,15 @@ int main() {
     }
     //функция вывода массива с квадратами на экран
     if (reqFlag) {
-        cout << "Array with required squares" << endl;
+        std::cout << "Array with required squares" << std::endl;
         for (int i = 0; i < tabletopSize; i++) {
             for (int j = 0; j < tabletopSize; j++) {
-                cout << arrReq[j][i] << " ";
+                std::cout << arrReq[j][i] << " ";
             }
-            cout << endl;
+            std::cout << std::endl;
         }
-        cout << "----------------------------" << endl;
-        cout << endl;
+        std::cout << "----------------------------" << std::endl;
+        std::cout << std::endl;
     }
 
     if (primeFlag > 1) {
@@ -253,48 +252,48 @@ int main() {
         res = minSquares(limit, &squares, arrReq, tabletopSize, 0);
     }
 
-    cout << "Result is: " << res + reqSquaresNumber << endl;
+    std::cout << "Result is: " << res + reqSquaresNumber << std::endl;
 
-    cout << "Required squares is:" << endl;
+    std::cout << "Required squares is:" << std::endl;
     for (int i = 0; i < reqSquaresNumber; i++){
-        cout << reqSquares[i].x + 1 << " " << reqSquares[i].y + 1 << " " << reqSquares[i].size << endl;
+        std::cout << reqSquares[i].x + 1 << " " << reqSquares[i].y + 1 << " " << reqSquares[i].size << std::endl;
     }
-    cout << "--------------------" << endl;
+    std::cout << "--------------------" << std::endl;
 
     Square tmp{};
     int flagCounter = 1;
 
     if (reqFlag) {
-        cout << "Split squares is:" << endl;
+        std::cout << "Split squares is:" << std::endl;
         while (!squares.empty()) {
             if (flagCounter > res) {
                 squares.pop();
                 continue;
             }
             tmp = squares.top();
-            cout << tmp.x + 1 << " " << tmp.y + 1 << " " << tmp.size << endl;
+            std::cout << tmp.x + 1 << " " << tmp.y + 1 << " " << tmp.size << std::endl;
             insertSquare(arrReq, tmp.x, tmp.y, tmp.size);
             squares.pop();
             flagCounter++;
         }
-        cout << "-----------------" << endl;
+        std::cout << "-----------------" << std::endl;
 
-        cout << "Result tabletop splitting is:" << endl;
+        std::cout << "Result tabletop splitting is:" << std::endl;
         for (int i = 0; i < tabletopSize; i++) {
             for (int j = 0; j < tabletopSize; j++) {
-                cout << arrReq[j][i] << " ";
+                std::cout << arrReq[j][i] << " ";
             }
-            cout << endl;
+            std::cout << std::endl;
         }
-        cout << "----------------------------" << endl;
-        cout << endl;
+        std::cout << "----------------------------" << std::endl;
+        std::cout << std::endl;
         for (int i = 0; i < tabletopSize; i++)
             delete[] arrReq[i];
         delete[] arrReq;
     }
     else {
         int scale = (primeFlag != 1) ? tabletopSize / primeFlag : 1;
-        cout << "Split squares is:" << endl;
+        std::cout << "Split squares is:" << std::endl;
         while (!squares.empty()) {
             if (flagCounter > res) {
                 squares.pop();
@@ -306,7 +305,7 @@ int main() {
             squares.pop();
             flagCounter++;
         }
-        cout << "-----------------" << endl;
+        std::cout << "-----------------" << std::endl;
     }
 
     return 0;
