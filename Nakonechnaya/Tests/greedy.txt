@@ -1,0 +1,28 @@
+a g
+a b 3.0
+a c 1.0
+b d 2.0
+b e 3.0
+d e 4.0
+e a 3.0
+e f 2.0
+a g 8.0
+f g 1.0
+c m 1.0
+m n 1.0
+
+a d
+a b 1.0
+b c 9.0
+c d 3.0
+a d 9.0
+a e 1.0
+e d 3.0
+
+a f
+a c 1.0
+a b 1.0
+c d 2.0
+b e 2.0
+d f 3.0
+e f 3.0
