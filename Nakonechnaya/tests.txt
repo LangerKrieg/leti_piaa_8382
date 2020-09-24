@@ -1,46 +1,20 @@
-7
 a
-f
-a b 7
-a c 6
-b d 6
-c f 9
-d e 3
-d f 4
-e c 2
+a
+1
 
+Aa$aa
+Aaaaabbblsflksdjdlfkwwelkrjwmns,dmnflwkenkldfkfjAa$aaasldkjaskjd
+13
+
+a
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 9
-a
-d
-a b 8
-b c 10
-c d 10
-h c 10
-e f 8
-g h 11
-b e 8
-a g 10
-f d 8
 
-7
-a
-f
-a f 20
-a b 10
-b a 5
-b h 8
-h f 5
-h g 4
-g f 3
+abcd
+bnbnbnbasdnbasnd
+4
 
-8
-a
-g
-a b 5
-a c 8
-b d 3
-c e 6
-c f 2
-d g 2
-e g 5
-f g 2
+abcd
+abcdaaaaaabbbbbbcccccccdddddddabcd
+2
+
