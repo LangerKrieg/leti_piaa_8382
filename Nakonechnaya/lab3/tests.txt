@@ -44,3 +44,12 @@ c f 2
 d g 2
 e g 5
 f g 2
+
+4
+a
+h
+a b 2
+a c 2
+b h 2
+c h 2
+

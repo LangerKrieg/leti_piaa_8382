@@ -50,7 +50,6 @@ bool dfs(const vector<vector<int>>& Graph, int s, int t, vector<int>&parent, int
         //если смежная вершина не обработана и имеет ребро с обрабатываемой вершиной
         for(int j = 0 ; j < vertexesNum; j++){
             if(Graph[i][j] > 0 && !visited[j]){
-                cout << "Current vertex is: " << nodes[j] << endl;
                 //добавляем смежную вершину
                 st.push(j);
                 //в пути инициализируем смежную вершину и делаем её посещённой
@@ -58,6 +57,16 @@ bool dfs(const vector<vector<int>>& Graph, int s, int t, vector<int>&parent, int
                 visited[j] = true;
             }
         }
+    }
+    if(visited[t] == true){
+        cout << "Found a way" << endl;
+        string S;
+        for(int i = t; i != s; i = parent[i]){
+            S += nodes[i];
+        }
+        S = S + nodes[s];
+        reverse(S.begin(), S.end());
+        cout << "Way is: " << S << endl;
     }
     return visited[t];
 }
@@ -86,7 +95,7 @@ int fordFulkerson(vector<vector<int>>& graph, vector<vector<int>>& Graph, int s,
             u = parent[v];
             pathFlow = min(pathFlow, Graph[u][v]);
         }
-
+        cout << "Flow on the way is: " << pathFlow << endl;
         //обновление пропускной способности каждого ребра
         cout << "Now the throughput is as follows: " << endl;
         for (v = t; v != s; v = parent[v]) {
