@@ -315,4 +315,4 @@ int main() {
     //начало считывания данных
     start.readData();
     return 0;
-
+}
