@@ -30,11 +30,14 @@ bool compare(Edge a, Edge b){
 
 //поиск в глубину
 bool dfs(const vector<vector<int>>& Graph, int s, int t, vector<int>&parent, int vertexesNum, const string& nodes){
+    cout << "Begin of dfs" << endl;
     //массив флагов посещаемости вершин
     //создаем стек
+    cout << "Create stack and array of flags" << endl;
     vector<bool>visited(vertexesNum,false);
     stack<int>st;
     //кладем исходную вершину в стек
+    cout << "Put initial top in stack and make it visited" << endl;
     st.push(s);
 
     //посетили вершину
@@ -44,18 +47,28 @@ bool dfs(const vector<vector<int>>& Graph, int s, int t, vector<int>&parent, int
 
     //обработка, пока стек не пуст
     while (!st.empty()) {
+        cout << "Take top from stack" << endl;
         //обработка первой вершины
         int i = st.top();
         st.pop();
+        cout << "This top is: " << nodes[i] << endl;
         //если смежная вершина не обработана и имеет ребро с обрабатываемой вершиной
         for(int j = 0 ; j < vertexesNum; j++){
             if(Graph[i][j] > 0 && !visited[j]){
+                cout << "If an adjacent top is not processed and has an edge with a processed top - continue" << endl;
+                cout << "Remember that processed top is: " << nodes[i] << endl;
+                cout << "Top: " << nodes[i] << " have edge with top: " << nodes[j] << endl;
                 //добавляем смежную вершину
                 st.push(j);
                 //в пути инициализируем смежную вершину и делаем её посещённой
                 parent[j] = i;
                 visited[j] = true;
+                cout << "Put top: " << nodes[j] << " in stack and make it visited" << endl;
             }
+        }
+        if(t == i) {
+            cout << "Reached: " << nodes[t] << endl;
+            cout << "!!!The next vertices popped from the stack will not participate in the path!!!" << endl;
         }
     }
     if(visited[t] == true){
@@ -259,4 +272,3 @@ int main() {
     }
     return 0;
 }
-
